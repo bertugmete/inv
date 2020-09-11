@@ -14,7 +14,7 @@ class Cart extends React.Component {
     setTimeout(() => {
       this.props.removeFromCart(id)
       this.props.hideLoader()
-    }, 1000)
+    }, 500)
   }
 
   render() {

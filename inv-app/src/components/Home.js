@@ -89,7 +89,7 @@ class Home extends React.Component {
     this.props.addToCart(id)
     setTimeout(() => {
       this.props.hideLoader()
-    }, 1000)
+    }, 500)
   }
 
   render() {
