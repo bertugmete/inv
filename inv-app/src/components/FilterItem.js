@@ -4,9 +4,10 @@ import { FILTER_MENU } from "../constants"
 import { Checkbox, FormControlLabel, Box, FormControl, FormLabel } from "@material-ui/core"
 
 export default function FilterItem({ type, handleCheckboxChange, title }) {
-  const filterItem = FILTER_MENU[type].map((filter) => {
+  const filterItem = FILTER_MENU[type].map((filter, index) => {
     return (
       <FormControlLabel
+        key={index}
         control={
           <Checkbox
             name={filter.label}

@@ -94,7 +94,7 @@ class Home extends React.Component {
         <Container maxWidth="lg" style={{ position: "relative" }}>
           {isLoading && <Loader />}
 
-          <Grid container spacing={12}>
+          <Grid container>
             <HeaderTitle title={HEADER.home} />
             <FilterList
               container

@@ -7,21 +7,24 @@ import { FILTER_TYPES } from "../constants"
 export default function FilterList(props) {
   const { onChange } = props
   return (
-    <Grid {...props}>
+    <Grid item {...props}>
       <FilterItem
         type={FILTER_TYPES.color.name}
         title={FILTER_TYPES.color.title}
         onChange={onChange}
+        key={1}
       />
       <FilterItem
         type={FILTER_TYPES.size.name}
         title={FILTER_TYPES.size.title}
         onChange={onChange}
+        key={2}
       />
       <FilterItem
         type={FILTER_TYPES.price.name}
         title={FILTER_TYPES.price.title}
         onChange={onChange}
+        key={3}
       />
     </Grid>
   )

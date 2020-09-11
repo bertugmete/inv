@@ -12,7 +12,7 @@ function Cart({ addedItems }) {
       <Container maxWidth="lg">
         <HeaderTitle title={HEADER.cart} />
         {addedItems.length > 0 ? (
-          <Grid container spacing={12}>
+          <Grid container>
             <ItemCard items={addedItems} />
           </Grid>
         ) : (

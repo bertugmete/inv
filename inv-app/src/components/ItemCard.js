@@ -17,8 +17,8 @@ export default function ItemCard({ items, willAdd, onClick }) {
   let cardList = items ? (
     items.map((item, index) => {
       return (
-        <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-          <Card key={index}>
+        <Grid item xs={12} sm={12} md={4} lg={4} xl={4} key={index}>
+          <Card>
             <CardMedia image={item.imgName} style={{ height: 140 }} />
             <CardHeader title={item.name} />
             <CardBody item={item} />
@@ -44,13 +44,13 @@ export function CardBody({ item }) {
       <Typography gutterBottom variant="h6" component="h6">
         {`${item.description}`}
       </Typography>
-      <Typography gutterBottom variant="p" component="p">
+      <Typography gutterBottom component="p">
         {`${item.price} ${CURRENCY.TL}`}
       </Typography>
-      <Typography gutterBottom variant="p" component="p">
+      <Typography gutterBottom component="p">
         {`${item.color}`}
       </Typography>
-      <Typography gutterBottom variant="p" component="p">
+      <Typography gutterBottom component="p">
         {`${item.size}`}
       </Typography>
     </CardContent>
