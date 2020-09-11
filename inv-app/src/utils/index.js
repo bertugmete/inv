@@ -6,7 +6,7 @@ export function filterArray(array, filters) {
       if (key === "price") {
         return filters[key].find((filter) => {
           let prices = filter.split("-")
-          return item[key] >= prices[0] && item[key] <= prices[1]
+          return item[key] >= prices[0] && item[key] < prices[1]
         })
       } else {
         return filters[key].find((filter) => filter === item[key])

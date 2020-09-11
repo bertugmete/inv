@@ -1,18 +1,32 @@
 import React from "react"
+import PropTypes from "prop-types"
 import Grid from "@material-ui/core/Grid"
 import FilterItem from "./FilterItem"
+import { FILTER_TYPES } from "../constants"
 
-class FilterList extends React.Component {
-  render() {
-    let { onChange } = this.props
-    return (
-      <Grid {...this.props}>
-        <FilterItem type="color" title="Renk" onChange={onChange} />
-        <FilterItem type="size" title="Size" onChange={onChange} />
-        <FilterItem type="price" title="Fiyat Aralığı" onChange={onChange} />
-      </Grid>
-    )
-  }
+export default function FilterList(props) {
+  const { onChange } = props
+  return (
+    <Grid {...props}>
+      <FilterItem
+        type={FILTER_TYPES.color.name}
+        title={FILTER_TYPES.color.title}
+        onChange={onChange}
+      />
+      <FilterItem
+        type={FILTER_TYPES.size.name}
+        title={FILTER_TYPES.size.title}
+        onChange={onChange}
+      />
+      <FilterItem
+        type={FILTER_TYPES.price.name}
+        title={FILTER_TYPES.price.title}
+        onChange={onChange}
+      />
+    </Grid>
+  )
 }
 
-export default FilterList
+FilterItem.propTypes = {
+  onChange: PropTypes.func,
+}

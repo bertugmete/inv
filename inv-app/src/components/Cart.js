@@ -1,18 +1,28 @@
 import React from "react"
 import { connect } from "react-redux"
-import { Container, Grid } from "@material-ui/core"
+import { Container, Grid, Box } from "@material-ui/core"
 import ItemCard from "../components/ItemCard"
-class Cart extends React.Component {
-  render() {
-    let { addedItems } = this.props
-    return (
+import ProductNotFound from "./ProdutNotFound"
+import HeaderTitle from "./HeaderTitle"
+import { HEADER } from "../constants"
+
+function Cart({ addedItems }) {
+  return (
+    <Box mt={10}>
       <Container maxWidth="lg">
-        <Grid container spacing={12}>
-          <ItemCard items={addedItems} />
-        </Grid>
+        <HeaderTitle title={HEADER.cart} />
+        {addedItems.length > 0 ? (
+          <Grid container spacing={12}>
+            <ItemCard items={addedItems} />
+          </Grid>
+        ) : (
+          <Grid container item direction="row" justify="center" alignItems="center">
+            <ProductNotFound />
+          </Grid>
+        )}
       </Container>
-    )
-  }
+    </Box>
+  )
 }
 
 const mapStateToProps = (state) => {

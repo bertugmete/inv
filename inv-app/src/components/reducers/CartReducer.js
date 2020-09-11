@@ -1,4 +1,6 @@
 import { ADD_TO_CART } from "../actions/actionTypes/cartActions"
+import ex from "../../images/ex.jpg"
+import ex2 from "../../images/ex2.jpg"
 
 const initState = {
   items: [
@@ -9,7 +11,7 @@ const initState = {
       size: "M",
       price: 50,
       description: "Hızlı Kuruyan Havlu",
-      imgName: "havlu.jpg",
+      imgName: ex,
     },
 
     {
@@ -19,6 +21,7 @@ const initState = {
       size: "L",
       price: 70,
       description: "Hızlı Kuruyan Havlu",
+      imgName: ex2,
     },
     {
       id: 3,
@@ -27,6 +30,7 @@ const initState = {
       size: "S",
       price: 90,
       description: "Hızlı Kuruyan Havlu",
+      imgName: ex,
     },
     {
       id: 4,
@@ -35,6 +39,7 @@ const initState = {
       size: "S",
       price: 100,
       description: "Hızlı Kuruyan Havlu",
+      imgName: ex2,
     },
     {
       id: 5,
@@ -43,6 +48,7 @@ const initState = {
       size: "XL",
       price: 110,
       description: "Hızlı Kuruyan Havlu",
+      imgName: ex,
     },
     {
       id: 6,
@@ -51,6 +57,7 @@ const initState = {
       size: "XL",
       price: 135,
       description: "Hızlı Kuruyan Havlu",
+      imgName: ex2,
     },
     {
       id: 7,
@@ -59,6 +66,7 @@ const initState = {
       size: "M",
       price: 180,
       description: "Hızlı Kuruyan Havlu",
+      imgName: ex,
     },
   ],
   addedItems: [],

@@ -1,11 +1,14 @@
 import React from "react"
 import { connect } from "react-redux"
 import { addToCart } from "./actions/cartActions"
-import ItemCard from "../components/ItemCard"
-import { Box } from "@material-ui/core"
-import Container from "@material-ui/core/Container"
-import Grid from "@material-ui/core/Grid"
+import { Box, Container, Grid } from "@material-ui/core"
+import HeaderTitle from "./HeaderTitle"
 import FilterList from "./FilterList"
+import ItemCard from "./ItemCard"
+import Loader from "./Loader"
+import ProductNotFound from "./ProdutNotFound"
+import { HEADER } from "../constants"
+
 import { filterArray } from "../utils"
 
 class Home extends React.Component {
@@ -18,17 +21,19 @@ class Home extends React.Component {
         color: [],
         price: [],
       },
+      isLoading: false,
     }
   }
 
   handleCheckboxChange = (e) => {
     let { value, checked, name } = e.target
-
-    if (checked) {
-      this.filtrele(name, value)
-    } else {
-      this.filtreCikar(name, value)
-    }
+    this.showLoader(() => {
+      if (checked) {
+        this.filtrele(name, value)
+      } else {
+        this.filtreCikar(name, value)
+      }
+    })
   }
 
   filtrele = (name, value) => {
@@ -68,24 +73,38 @@ class Home extends React.Component {
   }
 
   handleOnClik = (id) => {
-    this.props.addToCart(id)
+    this.showLoader(() => {
+      this.props.addToCart(id)
+    })
+  }
+
+  showLoader = (callback) => {
+    this.setState({
+      isLoading: true,
+    })
+    setTimeout(() => {
+      this.setState({ isLoading: false }, callback)
+    }, 500)
   }
 
   render() {
-    let { filteredItem } = this.state
+    let { filteredItem, isLoading } = this.state
     return (
       <Box mt={10}>
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" style={{ position: "relative" }}>
+          {isLoading && <Loader />}
+
           <Grid container spacing={12}>
+            <HeaderTitle title={HEADER.home} />
             <FilterList
               container
               direction="column"
               xs={12}
               sm={12}
-              md={4}
-              lg={4}
-              xl={4}
-              spacing={3}
+              md={2}
+              lg={2}
+              xl={2}
+              spacing={2}
               onChange={this.handleCheckboxChange}
             />
             <Grid
@@ -95,11 +114,17 @@ class Home extends React.Component {
               justify="center"
               xs={12}
               sm={12}
-              md={8}
-              lg={8}
-              xl={8}
+              md={10}
+              lg={10}
+              xl={10}
             >
-              <ItemCard items={filteredItem} onClick={this.handleOnClik} willAdd />
+              {filteredItem.length > 0 ? (
+                <ItemCard items={filteredItem} onClick={this.handleOnClik} willAdd />
+              ) : (
+                <Grid container item direction="row" justify="center" alignItems="center">
+                  <ProductNotFound />
+                </Grid>
+              )}
             </Grid>
           </Grid>
         </Container>
