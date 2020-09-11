@@ -27,7 +27,6 @@ export const FILTER_MENU = {
 }
 
 export const HEADER = {
-  companyName: "Inveon",
   home: "Ürünler",
   cart: "Sepetim",
 }

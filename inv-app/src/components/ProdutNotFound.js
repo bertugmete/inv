@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography"
 export default function ProductNotFound() {
   return (
     <Typography variant="h6" gutterBottom>
-      Ürün bulunamadı
+      Sepentinizde ürün bulunmamaktadır
     </Typography>
   )
 }

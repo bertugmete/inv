@@ -5,11 +5,16 @@ import ItemCard from "../components/ItemCard"
 import ProductNotFound from "./ProdutNotFound"
 import HeaderTitle from "./HeaderTitle"
 import { HEADER } from "../constants"
-import { removeFromCart } from "./actions/cartActions"
+import { removeFromCart, showLoader, hideLoader } from "./actions/cartActions"
 
 class Cart extends React.Component {
   handleOnClik = (id) => {
-    this.props.removeFromCart(id)
+    this.props.showLoader()
+
+    setTimeout(() => {
+      this.props.removeFromCart(id)
+      this.props.hideLoader()
+    }, 1000)
   }
 
   render() {
@@ -46,6 +51,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     removeFromCart: (id) => {
       dispatch(removeFromCart(id))
+    },
+    showLoader: () => {
+      dispatch(showLoader())
+    },
+    hideLoader: () => {
+      dispatch(hideLoader())
     },
   }
 }

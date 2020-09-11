@@ -1,4 +1,9 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from "../actions/actionTypes/cartActions"
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  SHOW_LOADER,
+  HIDE_LOADER,
+} from "../actions/actionTypes/cartActions"
 import ex from "../../images/ex.jpg"
 import ex2 from "../../images/ex2.jpg"
 
@@ -71,6 +76,7 @@ const initState = {
   ],
   addedItems: [],
   total: 0,
+  showLoader: false,
 }
 
 const cartReducer = (state = initState, action) => {
@@ -88,6 +94,17 @@ const cartReducer = (state = initState, action) => {
         ...state,
         addedItems: [...newAddedItems],
       }
+    case SHOW_LOADER:
+      return {
+        ...state,
+        showLoader: true,
+      }
+    case HIDE_LOADER:
+      return {
+        ...state,
+        showLoader: false,
+      }
+
     default:
       return state
   }

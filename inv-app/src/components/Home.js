@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { addToCart } from "./actions/cartActions"
+import { addToCart, showLoader, hideLoader } from "./actions/cartActions"
 import { Box, Container, Grid } from "@material-ui/core"
 import HeaderTitle from "./HeaderTitle"
 import FilterList from "./FilterList"
@@ -46,10 +46,17 @@ class Home extends React.Component {
 
     let filteredArray = filterArray(items, filters)
 
-    this.setState({
-      filters,
-      filteredItem: filteredArray,
-    })
+    this.props.showLoader()
+
+    setTimeout(() => {
+      this.setState(
+        {
+          filters,
+          filteredItem: filteredArray,
+        },
+        () => this.props.hideLoader()
+      )
+    }, 500)
   }
 
   filtreCikar = (name, value) => {
@@ -64,14 +71,25 @@ class Home extends React.Component {
     filters[value].splice(index, 1)
     let filteredArray = filterArray(items, filters)
 
-    this.setState({
-      filters,
-      filteredItem: filteredArray,
-    })
+    this.props.showLoader()
+
+    setTimeout(() => {
+      this.setState(
+        {
+          filters,
+          filteredItem: filteredArray,
+        },
+        () => this.props.hideLoader()
+      )
+    }, 500)
   }
 
   handleOnClik = (id) => {
+    this.props.showLoader()
     this.props.addToCart(id)
+    setTimeout(() => {
+      this.props.hideLoader()
+    }, 1000)
   }
 
   render() {
@@ -134,6 +152,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (id) => {
       dispatch(addToCart(id))
+    },
+    showLoader: () => {
+      dispatch(showLoader())
+    },
+    hideLoader: () => {
+      dispatch(hideLoader())
     },
   }
 }
