@@ -5,7 +5,6 @@ import { Box, Container, Grid } from "@material-ui/core"
 import HeaderTitle from "./HeaderTitle"
 import FilterList from "./FilterList"
 import ItemCard from "./ItemCard"
-import Loader from "./Loader"
 import ProductNotFound from "./ProdutNotFound"
 import { HEADER } from "../constants"
 
@@ -21,20 +20,19 @@ class Home extends React.Component {
         color: [],
         price: [],
       },
-      isLoading: false,
     }
   }
 
   handleCheckboxChange = (e) => {
     let { value, checked, name } = e.target
     if (checked) {
-      this.filtrele(name, value)
+      this.addFilter(name, value)
     } else {
-      this.filtreCikar(name, value)
+      this.removeFilter(name, value)
     }
   }
 
-  filtrele = (name, value) => {
+  addFilter = (name, value) => {
     let { filters } = this.state
     let { items } = this.props
     const index = filters[value].indexOf(name)
@@ -59,7 +57,7 @@ class Home extends React.Component {
     }, 500)
   }
 
-  filtreCikar = (name, value) => {
+  removeFilter = (name, value) => {
     let { filters } = this.state
     let { items } = this.props
 
@@ -93,12 +91,10 @@ class Home extends React.Component {
   }
 
   render() {
-    let { filteredItem, isLoading } = this.state
+    let { filteredItem } = this.state
     return (
       <Box mt={10}>
         <Container maxWidth="lg" style={{ position: "relative" }}>
-          {isLoading && <Loader />}
-
           <Grid container>
             <HeaderTitle title={HEADER.home} />
             <FilterList
