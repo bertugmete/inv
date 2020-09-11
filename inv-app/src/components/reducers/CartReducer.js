@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from "../actions/actionTypes/cartActions"
+import { ADD_TO_CART, REMOVE_FROM_CART } from "../actions/actionTypes/cartActions"
 import ex from "../../images/ex.jpg"
 import ex2 from "../../images/ex2.jpg"
 
@@ -80,6 +80,13 @@ const cartReducer = (state = initState, action) => {
       return {
         ...state,
         addedItems: [...state.addedItems, addedItem],
+      }
+    case REMOVE_FROM_CART:
+      let newAddedItems = state.addedItems.filter((item) => item.id !== action.id)
+      debugger
+      return {
+        ...state,
+        addedItems: [...newAddedItems],
       }
     default:
       return state

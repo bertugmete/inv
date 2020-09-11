@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core"
 import { CURRENCY } from "../constants"
 
-export default function ItemCard({ items, willAdd, onClick }) {
+export default function ItemCard({ items, onClick, buttonText }) {
   let cardList = items ? (
     items.map((item, index) => {
       return (
@@ -22,7 +22,7 @@ export default function ItemCard({ items, willAdd, onClick }) {
             <CardMedia image={item.imgName} style={{ height: 140 }} />
             <CardHeader title={item.name} />
             <CardBody item={item} />
-            {willAdd && <CardFooter onClick={onClick} item={item} />}
+            <CardFooter onClick={onClick} item={item} buttonText={buttonText} />
           </Card>
         </Grid>
       )
@@ -40,7 +40,6 @@ export default function ItemCard({ items, willAdd, onClick }) {
 export function CardBody({ item }) {
   return (
     <CardContent>
-      {/* <img src={`${item.imgName}`} alt="" /> */}
       <Typography gutterBottom variant="h6" component="h6">
         {`${item.description}`}
       </Typography>
@@ -57,12 +56,12 @@ export function CardBody({ item }) {
   )
 }
 
-export function CardFooter({ onClick, item }) {
+export function CardFooter({ onClick, item, buttonText }) {
   return (
     <CardActions>
       <Grid container item direction="row" justify="center" alignItems="center">
         <Button variant="outlined" color="primary" onClick={() => onClick(item.id)}>
-          Sepete Ekle
+          {buttonText}
         </Button>
       </Grid>
     </CardActions>
@@ -72,5 +71,5 @@ export function CardFooter({ onClick, item }) {
 ItemCard.propTypes = {
   items: PropTypes.array,
   onClick: PropTypes.func,
-  willAdd: PropTypes.bool,
+  buttonText: PropTypes.string,
 }

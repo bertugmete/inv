@@ -27,13 +27,11 @@ class Home extends React.Component {
 
   handleCheckboxChange = (e) => {
     let { value, checked, name } = e.target
-    this.showLoader(() => {
-      if (checked) {
-        this.filtrele(name, value)
-      } else {
-        this.filtreCikar(name, value)
-      }
-    })
+    if (checked) {
+      this.filtrele(name, value)
+    } else {
+      this.filtreCikar(name, value)
+    }
   }
 
   filtrele = (name, value) => {
@@ -73,18 +71,7 @@ class Home extends React.Component {
   }
 
   handleOnClik = (id) => {
-    this.showLoader(() => {
-      this.props.addToCart(id)
-    })
-  }
-
-  showLoader = (callback) => {
-    this.setState({
-      isLoading: true,
-    })
-    setTimeout(() => {
-      this.setState({ isLoading: false }, callback)
-    }, 500)
+    this.props.addToCart(id)
   }
 
   render() {
@@ -119,7 +106,11 @@ class Home extends React.Component {
               xl={10}
             >
               {filteredItem.length > 0 ? (
-                <ItemCard items={filteredItem} onClick={this.handleOnClik} willAdd />
+                <ItemCard
+                  items={filteredItem}
+                  onClick={this.handleOnClik}
+                  buttonText="Sepete Ekle"
+                />
               ) : (
                 <Grid container item direction="row" justify="center" alignItems="center">
                   <ProductNotFound />
